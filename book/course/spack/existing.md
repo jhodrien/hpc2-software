@@ -70,7 +70,7 @@ spack spec phylobayesmpi
 <details>
 <summary>Full spec</summary>
 
-```
+```bash
  -   phylobayesmpi@1.9 build_system=makefile arch=linux-rocky9-zen4 %cxx=gcc@14.2.0
 [+]      ^compiler-wrapper@1.0 build_system=generic arch=linux-rocky9-zen4 
 [e]      ^gcc@14.2.0~binutils+bootstrap~graphite~mold~nvptx~piclibs~profiled~strip build_system=autotools build_type=RelWithDebInfo languages:='c,c++,fortran' arch=linux-rocky9-zen4 
