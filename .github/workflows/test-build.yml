@@ -9,21 +9,15 @@ on:
       - main
 
 # This job installs dependencies and builds the book
-jobs:
-  deploy-book:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        environment-file: environment.yml
-        auto-activate-base: false
-        activate-environment: arcdocs-jb
-        python-version: 3.14
-
-    # Build the book
-    - name: Build the book
-      shell: bash -l {0}
-      run: |
-        conda activate arcdocs-jb
-        jupyter-book build ./book/
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+      - name: Install MyST
+        run: npm install -g mystmd@1.6.4
+      - name: Build HTML Assets
+        working-directory: book
+        run: myst build --html
