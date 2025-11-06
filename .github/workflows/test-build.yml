@@ -9,6 +9,7 @@ on:
       - main
 
 # This job installs dependencies and builds the book
+jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
