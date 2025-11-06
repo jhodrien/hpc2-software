@@ -7,7 +7,7 @@ Containers are a bit like VMs, but less contained than that.  It probably helps
 to look at a diagram to help understand the limits of containers, compared to
 virtual machines:
 
-```{image} ../assets/img/course/containers/Docker-containerized-and-vm-transparent-bg.png
+```{image} ../assets/img/course/containers/Docker-containerized-and-vm.png
 :alt: What is a container, docker.com, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
 :width: 600px
 :align: center
