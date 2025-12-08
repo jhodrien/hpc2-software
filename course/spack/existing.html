@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Using existing software &#8212; HPC2: Installing and Managing Applications on the HPC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'course/spack/existing';</script>
+    <link rel="canonical" href="https://arctraining.github.io/hpc2-software/course/spack/existing.html" />
+    <link rel="shortcut icon" href="../../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Advanced software install" href="advanced.html" />
+    <link rel="prev" title="Building a test piece of software" href="testinstall.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../welcome.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="HPC2: Installing and Managing Applications on the HPC - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="HPC2: Installing and Managing Applications on the HPC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../welcome.html">
+                    HPC2: Installing and Managing Applications on the HPC
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conda.html">Conda package manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autotools.html">Autotools</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../cmake.html">CMake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../containers.html">Containers</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../spack.html">Spack</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing.html">Installing Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testinstall.html">Building a test piece of software</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Using existing software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced software install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes.html">Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Module files</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software/edit/main/book/course/spack/existing.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software/issues/new?title=Issue%20on%20page%20%2Fcourse/spack/existing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/course/spack/existing.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Using existing software</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers">Compilers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-software">Other software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="using-existing-software">
+<h1>Using existing software<a class="headerlink" href="#using-existing-software" title="Permalink to this heading">#</a></h1>
+<p>Spack by default will quite happily just build everything itself, as long as a
+limited number of <a class="reference external" href="https://spack.readthedocs.io/en/latest/installing_prerequisites.html">system requirements</a>
+are satisfied.  But you might want to use a compiler and MPI library from a
+host system.  This is often the case if packages take a long time to build, or
+if you’ve got access to optimised versions of software that you don’t want to
+replicate yourself such as on Aire.</p>
+<p>In these circumstances, it’s useful to be able to tell Spack about existing
+software, so it can use those instead of rebuilding them.  How much you tell
+Spack about your host system, and the installed software is up to you.  On one
+hand you can massively reduce how much software you need to build yourself, but
+on the other hand, you become much more dependent on the host system.  There’s
+not one right answer.</p>
+<section id="compilers">
+<h2>Compilers<a class="headerlink" href="#compilers" title="Permalink to this heading">#</a></h2>
+<p>Compilers are a bit different to other pieces of software.  Typically the
+easiest way to get Spack to use a system compiler is to make sure it’s in your
+path and tell Spack to try to find it.  In this example I’m going to load a
+newer GCC compiler than is available by default:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>add<span class="w"> </span>gcc/14.2.0
+$<span class="w"> </span>spack<span class="w"> </span>compiler<span class="w"> </span><span class="nv">add</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Added<span class="w"> </span><span class="m">1</span><span class="w"> </span>new<span class="w"> </span>compiler<span class="w"> </span>to<span class="w"> </span>/users/example/spack/etc/spack/packages.yaml
+<span class="w">    </span>gcc@14.2.0
+<span class="o">==</span>&gt;<span class="w"> </span>Compilers<span class="w"> </span>are<span class="w"> </span>defined<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>files:
+<span class="w">    </span>/users/example/spack/etc/spack/packages.yaml
+</pre></div>
+</div>
+<p>Spack now knows about this compiler.</p>
+<p>You can confirm your config, or make other changes with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>config<span class="w"> </span>edit<span class="w"> </span>packages
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">packages</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gcc</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">externals</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcc@14.2.0 languages:=&#39;c,c++,fortran&#39;</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0</span>
+<span class="w">      </span><span class="nt">extra_attributes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">compilers</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0/bin/gcc</span>
+<span class="w">          </span><span class="nt">cxx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0/bin/g++</span>
+<span class="w">          </span><span class="nt">fortran</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0/bin/gfortran</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcc@11.4.1 languages:=&#39;c,c++&#39;</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr</span>
+<span class="w">      </span><span class="nt">extra_attributes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">compilers</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/bin/gcc</span>
+<span class="w">          </span><span class="nt">cxx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/bin/g++</span>
+</pre></div>
+</div>
+</section>
+<section id="other-software">
+<h2>Other software<a class="headerlink" href="#other-software" title="Permalink to this heading">#</a></h2>
+<p>Take an example of building the software phylobayesmpi.  It only needs mpi
+as a dependency, but mpi requires a lot of dependencies to be built.
+You can see what Spack would like to build:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>spec<span class="w"> </span>phylobayesmpi
+</pre></div>
+</div>
+<details>
+<summary>Full spec</summary>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">-</span>   <span class="n">phylobayesmpi</span><span class="o">@</span><span class="mf">1.9</span> <span class="n">build_system</span><span class="o">=</span><span class="n">makefile</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>      <span class="o">^</span><span class="n">compiler</span><span class="o">-</span><span class="n">wrapper</span><span class="o">@</span><span class="mf">1.0</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span>
+<span class="p">[</span><span class="n">e</span><span class="p">]</span>      <span class="o">^</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span><span class="o">~</span><span class="n">binutils</span><span class="o">+</span><span class="n">bootstrap</span><span class="o">~</span><span class="n">graphite</span><span class="o">~</span><span class="n">mold</span><span class="o">~</span><span class="n">nvptx</span><span class="o">~</span><span class="n">piclibs</span><span class="o">~</span><span class="n">profiled</span><span class="o">~</span><span class="n">strip</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">build_type</span><span class="o">=</span><span class="n">RelWithDebInfo</span> <span class="n">languages</span><span class="o">:=</span><span class="s1">&#39;c,c++,fortran&#39;</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">x86_64</span>
+ <span class="o">-</span>       <span class="o">^</span><span class="n">gcc</span><span class="o">-</span><span class="n">runtime</span><span class="o">@</span><span class="mf">14.2.0</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span>
+<span class="p">[</span><span class="n">e</span><span class="p">]</span>      <span class="o">^</span><span class="n">glibc</span><span class="o">@</span><span class="mf">2.34</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">x86_64</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>      <span class="o">^</span><span class="n">gmake</span><span class="o">@</span><span class="mf">4.4.1</span><span class="o">~</span><span class="n">guile</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+<span class="p">[</span><span class="n">e</span><span class="p">]</span>          <span class="o">^</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span><span class="o">~</span><span class="n">binutils</span><span class="o">+</span><span class="n">bootstrap</span><span class="o">~</span><span class="n">graphite</span><span class="o">~</span><span class="n">nvptx</span><span class="o">~</span><span class="n">piclibs</span><span class="o">~</span><span class="n">profiled</span><span class="o">~</span><span class="n">strip</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">build_type</span><span class="o">=</span><span class="n">RelWithDebInfo</span> <span class="n">languages</span><span class="o">:=</span><span class="s1">&#39;c,c++&#39;</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">x86_64</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>          <span class="o">^</span><span class="n">gcc</span><span class="o">-</span><span class="n">runtime</span><span class="o">@</span><span class="mf">11.4.1</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span>
+ <span class="o">-</span>       <span class="o">^</span><span class="n">openmpi</span><span class="o">@</span><span class="mf">5.0.8</span><span class="o">+</span><span class="n">atomics</span><span class="o">~</span><span class="n">cuda</span><span class="o">~</span><span class="n">debug</span><span class="o">+</span><span class="n">fortran</span><span class="o">~</span><span class="n">gpfs</span><span class="o">~</span><span class="n">internal</span><span class="o">-</span><span class="n">hwloc</span><span class="o">~</span><span class="n">internal</span><span class="o">-</span><span class="n">libevent</span><span class="o">~</span><span class="n">internal</span><span class="o">-</span><span class="n">pmix</span><span class="o">~</span><span class="n">ipv6</span><span class="o">~</span><span class="n">java</span><span class="o">~</span><span class="n">lustre</span><span class="o">~</span><span class="n">memchecker</span><span class="o">~</span><span class="n">openshmem</span><span class="o">~</span><span class="n">rocm</span><span class="o">~</span><span class="n">romio</span><span class="o">+</span><span class="n">rsh</span><span class="o">~</span><span class="n">static</span><span class="o">~</span><span class="n">two_level_namespace</span><span class="o">+</span><span class="n">vt</span><span class="o">+</span><span class="n">wrapper</span><span class="o">-</span><span class="n">rpath</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">fabrics</span><span class="o">:=</span><span class="n">none</span> <span class="n">romio</span><span class="o">-</span><span class="n">filesystem</span><span class="o">:=</span><span class="n">none</span> <span class="n">schedulers</span><span class="o">:=</span><span class="n">none</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="p">,</span><span class="n">fortran</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">autoconf</span><span class="o">@</span><span class="mf">2.72</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">m4</span><span class="o">@</span><span class="mf">1.4.20</span><span class="o">+</span><span class="n">sigsegv</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>                  <span class="o">^</span><span class="n">diffutils</span><span class="o">@</span><span class="mf">3.12</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+ <span class="o">-</span>                   <span class="o">^</span><span class="n">libsigsegv</span><span class="o">@</span><span class="mf">2.14</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">automake</span><span class="o">@</span><span class="mf">1.16.5</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">hwloc</span><span class="o">@</span><span class="mf">2.12.2</span><span class="o">~</span><span class="n">cairo</span><span class="o">~</span><span class="n">cuda</span><span class="o">~</span><span class="n">gl</span><span class="o">~</span><span class="n">level_zero</span><span class="o">~</span><span class="n">libudev</span><span class="o">+</span><span class="n">libxml2</span><span class="o">~</span><span class="n">nvml</span><span class="o">~</span><span class="n">opencl</span><span class="o">+</span><span class="n">pci</span><span class="o">~</span><span class="n">rocm</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">libs</span><span class="o">:=</span><span class="n">shared</span><span class="p">,</span><span class="n">static</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">libpciaccess</span><span class="o">@</span><span class="mf">0.17</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>                   <span class="o">^</span><span class="n">util</span><span class="o">-</span><span class="n">macros</span><span class="o">@</span><span class="mf">1.20.1</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">libxml2</span><span class="o">@</span><span class="mf">2.13.5</span><span class="o">~</span><span class="n">http</span><span class="o">+</span><span class="n">pic</span><span class="o">~</span><span class="n">python</span><span class="o">+</span><span class="n">shared</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>                  <span class="o">^</span><span class="n">libiconv</span><span class="o">@</span><span class="mf">1.18</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">libs</span><span class="o">:=</span><span class="n">shared</span><span class="p">,</span><span class="n">static</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+ <span class="o">-</span>                   <span class="o">^</span><span class="n">xz</span><span class="o">@</span><span class="mf">5.6.3</span><span class="o">~</span><span class="n">pic</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">libs</span><span class="o">:=</span><span class="n">shared</span><span class="p">,</span><span class="n">static</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>              <span class="o">^</span><span class="n">ncurses</span><span class="o">@</span><span class="mf">6.5</span><span class="o">-</span><span class="mi">20250705</span><span class="o">~</span><span class="n">symlinks</span><span class="o">+</span><span class="n">termlib</span> <span class="n">abi</span><span class="o">=</span><span class="n">none</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">patches</span><span class="o">:=</span><span class="mi">7</span><span class="n">a351bc</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">libevent</span><span class="o">@</span><span class="mf">2.1.12</span><span class="o">+</span><span class="n">openssl</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">openssl</span><span class="o">@</span><span class="mf">3.6.0</span><span class="o">~</span><span class="n">docs</span><span class="o">+</span><span class="n">shared</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">certs</span><span class="o">=</span><span class="n">mozilla</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>                   <span class="o">^</span><span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="o">-</span><span class="n">mozilla</span><span class="o">@</span><span class="mi">2025</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">12</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">libtool</span><span class="o">@</span><span class="mf">2.4.7</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">findutils</span><span class="o">@</span><span class="mf">4.10.0</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">patches</span><span class="o">:=</span><span class="mi">440</span><span class="n">b954</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>                   <span class="o">^</span><span class="n">gettext</span><span class="o">@</span><span class="mf">0.23.1</span><span class="o">+</span><span class="n">bzip2</span><span class="o">+</span><span class="n">curses</span><span class="o">+</span><span class="n">git</span><span class="o">~</span><span class="n">libunistring</span><span class="o">+</span><span class="n">libxml2</span><span class="o">+</span><span class="n">pic</span><span class="o">+</span><span class="n">shared</span><span class="o">+</span><span class="n">tar</span><span class="o">+</span><span class="n">xz</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>                       <span class="o">^</span><span class="n">tar</span><span class="o">@</span><span class="mf">1.35</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="nb">zip</span><span class="o">=</span><span class="n">pigz</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>                          <span class="o">^</span><span class="n">pigz</span><span class="o">@</span><span class="mf">2.8</span> <span class="n">build_system</span><span class="o">=</span><span class="n">makefile</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+ <span class="o">-</span>                           <span class="o">^</span><span class="n">zstd</span><span class="o">@</span><span class="mf">1.5.7</span><span class="o">+</span><span class="n">programs</span> <span class="n">build_system</span><span class="o">=</span><span class="n">makefile</span> <span class="n">compression</span><span class="o">:=</span><span class="n">none</span> <span class="n">libs</span><span class="o">:=</span><span class="n">shared</span><span class="p">,</span><span class="n">static</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">numactl</span><span class="o">@</span><span class="mf">2.0.18</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">openssh</span><span class="o">@</span><span class="mf">9.9</span><span class="n">p1</span><span class="o">+</span><span class="n">gssapi</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">krb5</span><span class="o">@</span><span class="mf">1.21.3</span><span class="o">+</span><span class="n">shared</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>                   <span class="o">^</span><span class="n">bison</span><span class="o">@</span><span class="mf">3.8.2</span><span class="o">~</span><span class="n">color</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">libedit</span><span class="o">@</span><span class="mf">3.1</span><span class="o">-</span><span class="mi">20240808</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">libxcrypt</span><span class="o">@</span><span class="mf">4.4.38</span><span class="o">~</span><span class="n">obsolete_api</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>          <span class="o">^</span><span class="n">perl</span><span class="o">@</span><span class="mf">5.42.0</span><span class="o">+</span><span class="n">cpanm</span><span class="o">+</span><span class="n">opcode</span><span class="o">+</span><span class="nb">open</span><span class="o">+</span><span class="n">shared</span><span class="o">+</span><span class="n">threads</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>              <span class="o">^</span><span class="n">berkeley</span><span class="o">-</span><span class="n">db</span><span class="o">@</span><span class="mf">18.1.40</span><span class="o">+</span><span class="n">cxx</span><span class="o">~</span><span class="n">docs</span><span class="o">+</span><span class="n">stl</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">patches</span><span class="o">:=</span><span class="mi">26090</span><span class="n">f4</span><span class="p">,</span><span class="n">b231fcc</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>              <span class="o">^</span><span class="n">bzip2</span><span class="o">@</span><span class="mf">1.0.8</span><span class="o">~</span><span class="n">debug</span><span class="o">~</span><span class="n">pic</span><span class="o">+</span><span class="n">shared</span> <span class="n">build_system</span><span class="o">=</span><span class="n">generic</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>              <span class="o">^</span><span class="n">gdbm</span><span class="o">@</span><span class="mf">1.25</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>                  <span class="o">^</span><span class="n">readline</span><span class="o">@</span><span class="mf">8.3</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">patches</span><span class="o">:=</span><span class="mi">21</span><span class="n">f0a03</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>          <span class="o">^</span><span class="n">pkgconf</span><span class="o">@</span><span class="mf">2.5.1</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">pmix</span><span class="o">@</span><span class="mf">6.0.0</span><span class="o">~</span><span class="n">munge</span><span class="o">~</span><span class="n">python</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>           <span class="o">^</span><span class="n">prrte</span><span class="o">@</span><span class="mf">4.0.0</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">schedulers</span><span class="o">:=</span><span class="n">none</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+ <span class="o">-</span>               <span class="o">^</span><span class="n">flex</span><span class="o">@</span><span class="mf">2.6.3</span><span class="o">+</span><span class="n">lex</span><span class="o">~</span><span class="n">nls</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">14.2.0</span>
+<span class="p">[</span><span class="o">+</span><span class="p">]</span>          <span class="o">^</span><span class="n">zlib</span><span class="o">-</span><span class="n">ng</span><span class="o">@</span><span class="mf">2.2.4</span><span class="o">+</span><span class="n">compat</span><span class="o">+</span><span class="n">new_strategies</span><span class="o">+</span><span class="n">opt</span><span class="o">+</span><span class="n">pic</span><span class="o">+</span><span class="n">shared</span> <span class="n">build_system</span><span class="o">=</span><span class="n">autotools</span> <span class="n">platform</span><span class="o">=</span><span class="n">linux</span> <span class="n">os</span><span class="o">=</span><span class="n">rocky9</span> <span class="n">target</span><span class="o">=</span><span class="n">zen4</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span><span class="n">cxx</span><span class="o">=</span><span class="n">gcc</span><span class="o">@</span><span class="mf">11.4.1</span>
+</pre></div>
+</div>
+</details>
+<p>You don’t need to read the full spec above, but on Aire currently, this adds
+up to 37 missing packages, which I’m sure would take a fair old amount of time
+to build.  So let’s see if we can cut that down by using software already
+installed on my system.</p>
+<p>It can find certain software in your environment without you having to
+configure anything by hand.  So if I load an openmpi module, and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>add<span class="w"> </span>openmpi/5.0.6/gcc-14.2.0
+$<span class="w"> </span>spack<span class="w"> </span>external<span class="w"> </span>find<span class="w"> </span><span class="nv">openmpi</span>
+<span class="o">==</span>&gt;<span class="w"> </span>The<span class="w"> </span>following<span class="w"> </span>specs<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>detected<span class="w"> </span>on<span class="w"> </span>this<span class="w"> </span>system<span class="w"> </span>and<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>/users/example/spack/etc/spack/packages.yaml
+--<span class="w"> </span>no<span class="w"> </span>arch<span class="w"> </span>/<span class="w"> </span>no<span class="w"> </span>compilers<span class="w"> </span>---------------------------------------
+openmpi@5.0.6
+</pre></div>
+</div>
+<p>Spack is now aware of that software, so you can build against it without having
+to rebuild openmpi, as long as you’re happy with that version.  As you can see
+from the output, this is written into your configuration, so will be remembered
+for future runs.</p>
+<p>If Spack wasn’t able to auto detect the software, you can add it to the
+packages.yaml by hand.  For example, if I wanted to add a system installed
+libjpeg-turbo to spack, I could add a section for that into my packages.yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">libjpeg-turbo</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">externals</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">libjpeg-turbo@1.5.3</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr</span>
+</pre></div>
+</div>
+<p>My full packages.yaml now looks like this, if looked at with <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">config</span> <span class="pre">edit</span> <span class="pre">packages</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">packages</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">openmpi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">externals</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openmpi@5.0.6~cuda~java~memchecker~rocm~static~wrapper-rpath fabrics=ofi,psm2,ucx schedulers=none</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/libraries/openmpi/5.0.6/gcc-14.2.0</span>
+<span class="w">  </span><span class="nt">gcc</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">externals</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcc@14.2.0 languages:=&#39;c,c++,fortran&#39;</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0</span>
+<span class="w">      </span><span class="nt">extra_attributes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">compilers</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0/bin/gcc</span>
+<span class="w">          </span><span class="nt">cxx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0/bin/g++</span>
+<span class="w">          </span><span class="nt">fortran</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/compilers/gcc/14.2.0/bin/gfortran</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcc@11.4.1 languages:=&#39;c,c++&#39;</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr</span>
+<span class="w">      </span><span class="nt">extra_attributes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">compilers</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/bin/gcc</span>
+<span class="w">          </span><span class="nt">cxx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/bin/g++</span>
+</pre></div>
+</div>
+<div class="admonition-openmpi-on-red-hat-oddity admonition">
+<p class="admonition-title">OpenMPI on Red Hat oddity</p>
+<p>There’s a whole lot of interesting stuff in there that I’ve not had to think
+about, as Spack has added all the details about the openmpi variant it
+discovered.  We’ll cover some of this in the advanced building section.</p>
+<p>If you’re using Red Hat’s version of OpenMPI, it can get one detail wrong
+because of how Red Hat split the installation up.  Change <code class="docutils literal notranslate"><span class="pre">/usr/lib64/openmpi</span></code>
+to <code class="docutils literal notranslate"><span class="pre">/usr</span></code> for openmpi.  This workaround for Red Hat’s odd packaging is
+adequate for this install, but sadly not for all packages, so you may find you
+need Spack to build its own OpenMPI rather than use Red Hat’s version in
+future.</p>
+</div>
+<p>Having told Spack about the software we want it to use from the system, let’s
+look again now at building mpiwrapper, and see what that looks like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>spack<span class="w"> </span>spec<span class="w"> </span>phylobayesmpi
+<span class="w"> </span>-<span class="w">   </span>phylobayesmpi@1.9<span class="w"> </span><span class="nv">build_system</span><span class="o">=</span>makefile<span class="w"> </span><span class="nv">platform</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">os</span><span class="o">=</span>rocky9<span class="w"> </span><span class="nv">target</span><span class="o">=</span>zen4<span class="w"> </span>%cxx<span class="o">=</span>gcc@11.4.1
+<span class="o">[</span>+<span class="o">]</span><span class="w">      </span>^compiler-wrapper@1.0<span class="w"> </span><span class="nv">build_system</span><span class="o">=</span>generic<span class="w"> </span><span class="nv">platform</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">os</span><span class="o">=</span>rocky9<span class="w"> </span><span class="nv">target</span><span class="o">=</span>zen4
+<span class="o">[</span>e<span class="o">]</span><span class="w">      </span>^gcc@11.4.1~binutils+bootstrap~graphite~nvptx~piclibs~profiled~strip<span class="w"> </span><span class="nv">build_system</span><span class="o">=</span>autotools<span class="w"> </span><span class="nv">build_type</span><span class="o">=</span>RelWithDebInfo<span class="w"> </span>languages:<span class="o">=</span><span class="s1">&#39;c,c++&#39;</span><span class="w"> </span><span class="nv">platform</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">os</span><span class="o">=</span>rocky9<span class="w"> </span><span class="nv">target</span><span class="o">=</span>x86_64
+<span class="o">[</span>+<span class="o">]</span><span class="w">      </span>^gcc-runtime@11.4.1<span class="w"> </span><span class="nv">build_system</span><span class="o">=</span>generic<span class="w"> </span><span class="nv">platform</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">os</span><span class="o">=</span>rocky9<span class="w"> </span><span class="nv">target</span><span class="o">=</span>zen4
+<span class="o">[</span>e<span class="o">]</span><span class="w">      </span>^glibc@2.34<span class="w"> </span><span class="nv">build_system</span><span class="o">=</span>autotools<span class="w"> </span><span class="nv">platform</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">os</span><span class="o">=</span>rocky9<span class="w"> </span><span class="nv">target</span><span class="o">=</span>x86_64
+<span class="o">[</span>+<span class="o">]</span><span class="w">      </span>^gmake@4.4.1~guile<span class="w"> </span><span class="nv">build_system</span><span class="o">=</span>generic<span class="w"> </span><span class="nv">platform</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">os</span><span class="o">=</span>rocky9<span class="w"> </span><span class="nv">target</span><span class="o">=</span>zen4<span class="w"> </span>%c<span class="o">=</span>gcc@11.4.1
+<span class="o">[</span>e<span class="o">]</span><span class="w">      </span>^openmpi@5.0.6+atomics~cuda~debug+fortran~gpfs~internal-hwloc~internal-libevent~internal-pmix~ipv6~java~lustre~memchecker~openshmem~rocm+romio+rsh~static~two_level_namespace+vt~wrapper-rpath<span class="w"> </span><span class="nv">build_system</span><span class="o">=</span>autotools<span class="w"> </span>fabrics:<span class="o">=</span>ofi,psm2,ucx<span class="w"> </span>romio-filesystem:<span class="o">=</span>none<span class="w"> </span>schedulers:<span class="o">=</span>none<span class="w"> </span><span class="nv">platform</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">os</span><span class="o">=</span>rocky9<span class="w"> </span><span class="nv">target</span><span class="o">=</span>x86_64
+</pre></div>
+</div>
+<p>So now Spack believes that it can reuse my openmpi from the system and it’s
+only actually going to build the piece of software I’ve asked for, rather than
+the huge list of dependencies we had before.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>spack<span class="w"> </span>install<span class="w"> </span>phylobayesmpi
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>/usr<span class="w"> </span><span class="o">(</span>external<span class="w"> </span>glibc-2.34-z4aqp7yhzcmlwfcydu32wbqxounooohb<span class="o">)</span>
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>/opt/apps/pkg/libraries/openmpi/5.0.6/gcc-14.2.0<span class="w"> </span><span class="o">(</span>external<span class="w"> </span>openmpi-5.0.6-xjyqqbweqxrrioc72tktzn3zipubmjy5<span class="o">)</span>
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>/usr<span class="w"> </span><span class="o">(</span>external<span class="w"> </span>gcc-11.4.1-fhj3ubjk6iqnexhdlnbcmlzjuo3iofwa<span class="o">)</span>
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>/users/example/spack/opt/spack/linux-zen4/compiler-wrapper-1.0-et3ejxhc3t5yoqbw74pqjv4izptvuj3q
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>/users/example/spack/opt/spack/linux-zen4/gcc-runtime-11.4.1-dqguk7uvu3bh5ehxvi7sv4qaartrartc
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>/users/example/spack/opt/spack/linux-zen4/gmake-4.4.1-2fg6qftd7dmzej4hzzydnwqwnbl65zac
+<span class="o">==</span>&gt;<span class="w"> </span>No<span class="w"> </span>binary<span class="w"> </span><span class="k">for</span><span class="w"> </span>phylobayesmpi-1.9-ajhjgnvilq36v2idl6ukpn7dxsckh5qn<span class="w"> </span>found:<span class="w"> </span>installing<span class="w"> </span>from<span class="w"> </span><span class="nb">source</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>phylobayesmpi-1.9-ajhjgnvilq36v2idl6ukpn7dxsckh5qn<span class="w"> </span><span class="o">[</span><span class="m">7</span>/7<span class="o">]</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span>https://mirror.spack.io/_source-cache/archive/56/567d8db995f23b2b0109c1e6088a7e5621e38fec91d6b2f27abd886b90ea31ce.tar.gz
+<span class="w">    </span><span class="o">[</span><span class="m">100</span>%<span class="o">]</span><span class="w">  </span><span class="m">701</span>.19<span class="w"> </span>KB<span class="w"> </span>@<span class="w">    </span><span class="m">1</span>.3<span class="w"> </span>MB/s
+<span class="o">==</span>&gt;<span class="w"> </span>No<span class="w"> </span>patches<span class="w"> </span>needed<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">phylobayesmpi</span>
+<span class="o">==</span>&gt;<span class="w"> </span>phylobayesmpi:<span class="w"> </span>Executing<span class="w"> </span>phase:<span class="w"> </span><span class="s1">&#39;edit&#39;</span>
+<span class="o">==</span>&gt;<span class="w"> </span>phylobayesmpi:<span class="w"> </span>Executing<span class="w"> </span>phase:<span class="w"> </span><span class="s1">&#39;build&#39;</span>
+<span class="o">==</span>&gt;<span class="w"> </span>phylobayesmpi:<span class="w"> </span>Executing<span class="w"> </span>phase:<span class="w"> </span><span class="s1">&#39;install&#39;</span>
+<span class="o">==</span>&gt;<span class="w"> </span>phylobayesmpi:<span class="w"> </span>Successfully<span class="w"> </span>installed<span class="w"> </span>phylobayesmpi-1.9-ajhjgnvilq36v2idl6ukpn7dxsckh5qn
+<span class="w">  </span>Stage:<span class="w"> </span><span class="m">1</span>.16s.<span class="w">  </span>Edit:<span class="w"> </span><span class="m">0</span>.00s.<span class="w">  </span>Build:<span class="w"> </span><span class="m">5</span>.30s.<span class="w">  </span>Install:<span class="w"> </span><span class="m">0</span>.01s.<span class="w">  </span>Post-install:<span class="w"> </span><span class="m">0</span>.02s.<span class="w">  </span>Total:<span class="w"> </span><span class="m">6</span>.55s
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>/users/example/spack/opt/spack/linux-zen4/phylobayesmpi-1.9-ajhjgnvilq36v2idl6ukpn7dxsckh5qn
+</pre></div>
+</div>
+<p>So we’ve just installed phylobayesmpi with Spack, using dependencies already
+installed on the system, in seconds.  Lovely.</p>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>A common package to pull from the host system is OpenSSL, as it’s almost always
+available, involves a fair few dependencies, and is frequently updated for
+security.  This last point makes it quite appealing to link against, as it
+means operating security updates will keep Spack installed software secure as
+far as OpenSSL libraries are concerned.</p>
+<p>Add this as an externally provided piece of software to Spack.</p>
+<details>
+<summary>Click here to reveal solution</summary>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">#</a></h3>
+<p>This is actually quite straightforward, since Spack can successfully detect
+and add this to your <code class="docutils literal notranslate"><span class="pre">packages.yaml</span></code> file.  I’m going to deliberately
+complicate matters by having the miniforge module loaded when we run this, to
+show you how you can tidy it up afterwards if it detects something you don’t
+want it to use.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>spack<span class="w"> </span>external<span class="w"> </span>find<span class="w"> </span><span class="nv">openssl</span>
+<span class="o">==</span>&gt;<span class="w"> </span>The<span class="w"> </span>following<span class="w"> </span>specs<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>detected<span class="w"> </span>on<span class="w"> </span>this<span class="w"> </span>system<span class="w"> </span>and<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>/users/example/spack/etc/spack/packages.yaml
+--<span class="w"> </span>no<span class="w"> </span>arch<span class="w"> </span>/<span class="w"> </span>no<span class="w"> </span>compilers<span class="w"> </span>---------------------------------------
+openssl@3.0.7<span class="w">  </span>openssl@3.3.2
+</pre></div>
+</div>
+<p>Here we find it’s detected both the system OpenSSL, along with a version
+lurking within miniforge, as I had that module loaded when I ran this.  If you
+found it picked up a package you didn’t want it to use, you can use <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">config</span> <span class="pre">edit</span> <span class="pre">packages</span></code> to adjust this after it’s detected packages.</p>
+<p>In this case, you may choose to remove these two lines, to stop it from using
+the miniforge version:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openssl@3.3.2</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/apps/pkg/interpreters/miniforge/24.7.1</span>
+</pre></div>
+</div>
+</details>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./course/spack"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="testinstall.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Building a test piece of software</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="advanced.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Advanced software install</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers">Compilers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-software">Other software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By University of Leeds Research Computing Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

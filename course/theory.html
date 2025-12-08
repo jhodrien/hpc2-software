@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Theory &#8212; HPC2: Installing and Managing Applications on the HPC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'course/theory';</script>
+    <link rel="canonical" href="https://arctraining.github.io/hpc2-software/course/theory.html" />
+    <link rel="shortcut icon" href="../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Conda package manager" href="conda.html" />
+    <link rel="prev" title="HPC2: Installing and Managing Applications on the HPC" href="../welcome.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="HPC2: Installing and Managing Applications on the HPC - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="HPC2: Installing and Managing Applications on the HPC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    HPC2: Installing and Managing Applications on the HPC
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda package manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autotools.html">Autotools</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="cmake.html">CMake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="spack.html">Spack</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack/installing.html">Installing Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/testinstall.html">Building a test piece of software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/existing.html">Using existing software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/advanced.html">Advanced software install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/environments.html">Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/recipes.html">Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/modules.html">Module files</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software/edit/main/book/course/theory.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software/issues/new?title=Issue%20on%20page%20%2Fcourse/theory.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/course/theory.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Theory</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#files">Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-files">Types of files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-environment-variables">Path environment variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locations-for-building-and-running-your-own-code">Locations for building and running your own code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software">Software</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-software">What is software?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-software">Installing software</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#package-managers">Package Managers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-tools">Build tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers">Compilers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreters">Interpreters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-configuration">Build Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packaging">Packaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution">Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platforms">Platforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-machines">Physical Machines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-machines">Virtual Machines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#containers">Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual Environments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="theory">
+<h1>Theory<a class="headerlink" href="#theory" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>This introductory lesson is a small set of computing theory and background information tailored to introduce you to the terminology and technologies that will be covered by further lessons in this course.</p>
+<p>It provides supporting information to the tools used to run, build and maintain software on the University’s HPC systems.</p>
+<section id="objectives">
+<h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Explain different types of files, environment variables and where to run your code.</p></li>
+<li><p>Explain about different methods to install and manage software.</p></li>
+<li><p>Explain the different steps and supporting tools in building software.</p></li>
+<li><p>Cover the different types of platforms you can utilise to build and run software on.</p></li>
+</ul>
+</section>
+</section>
+<section id="files">
+<h2>Files<a class="headerlink" href="#files" title="Permalink to this heading">#</a></h2>
+<p>Files are structures designed to contain information, such as text, executable code, images, video.</p>
+<p>Operating systems include tools to read, copy, modify and delete files.</p>
+<section id="types-of-files">
+<h3>Types of files<a class="headerlink" href="#types-of-files" title="Permalink to this heading">#</a></h3>
+<p>There are numerous file types you need to be aware of when using and developing code for HPC.
+Below are the key types of files:</p>
+<ul class="simple">
+<li><p><strong>executables</strong> - these types of files contain compiled binary code. When opened, the operating system will execute the instructions of the code to run the program.</p></li>
+<li><p><strong>libraries</strong> - In programming, a library contains common functions that can be reused in programs.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The term library is also used in computing for the name of a collection of related files, such as in /usr/share or as a package, eg tensorflow.</p>
+</div>
+<ul class="simple">
+<li><p><strong>configuration</strong> - these files contain strutured data that programs use to configure parameters and settings to use during execution.</p></li>
+<li><p><strong>scripts and code</strong> - these files contain code (instructions) that form (a part of) a program. Generally scripts can be run directly (Bash, Python), code files need to be compiled to run (C, Java).</p></li>
+<li><p><strong>headers</strong> - These are a specific type of include file that that specify declarations and interfaces, but do not provide any implementations . They allow programmers to create standardised, compatible data structures and reusable code.</p></li>
+</ul>
+</section>
+<section id="path-environment-variables">
+<h3>Path environment variables<a class="headerlink" href="#path-environment-variables" title="Permalink to this heading">#</a></h3>
+<p>These variables list common locations of files and are used by the system to lookup requested executables and libraries, without the need to provide the full path, which reduces the amount of configuration that would be required to run the same software on different systems.</p>
+<ul class="simple">
+<li><p>PATH - When you execute a program by giving its name, the shell looks it up in the directories listed in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable e.g. <code class="docutils literal notranslate"><span class="pre">/home/username/bin:/usr/local/bin:/usr/bin:/bin</span></code></p></li>
+<li><p>LD_LIBRARY_PATH - when a program requests a library the dynamic loader will look in the directories listed in the <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> variable e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib:/usr/lib:/lib</span></code></p></li>
+<li><p>CPATH - When compiling, specifies the search path for header files, particularly when working with C and C++ programming languages.</p></li>
+<li><p>PKG_CONFIG_PATH - Where pkgconfig (manages the configuration of compilers and linking libraries) searches for pkg-config files.</p></li>
+</ul>
+<p>Installation of, or enabling software may add additional locations to PATH or LD_LIBRARY_PATH variables.
+Users can modify these variables for their own user (not system wide), this may need to be done if you are building software yourself.</p>
+</section>
+<section id="locations-for-building-and-running-your-own-code">
+<h3>Locations for building and running your own code<a class="headerlink" href="#locations-for-building-and-running-your-own-code" title="Permalink to this heading">#</a></h3>
+<p>The best locations for building and running your code are your home directory (or sub directory) where your user usually has full permissions to run and manage files eg  <code class="docutils literal notranslate"><span class="pre">/home/username/</span></code> or other user writable/executable directories such as <code class="docutils literal notranslate"><span class="pre">/mnt/scratch/username</span></code> on Aire.</p>
+</section>
+</section>
+<section id="software">
+<h2>Software<a class="headerlink" href="#software" title="Permalink to this heading">#</a></h2>
+<section id="what-is-software">
+<h3>What is software?<a class="headerlink" href="#what-is-software" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Software is the name given to executable computer programs.</p></li>
+<li><p>Software can include one or more executable, library, configuration, data, asset  files.</p></li>
+<li><p>Software can be run by the user or automatically by the operating system.</p></li>
+<li><p>Multiple pieces of software can be packaged together such as the Anaconda installer or Microsoft Office.</p></li>
+</ul>
+</section>
+<section id="installing-software">
+<h3>Installing software<a class="headerlink" href="#installing-software" title="Permalink to this heading">#</a></h3>
+<p>Software usually requires installation before it can be run. This is usually by one of the following methods:</p>
+<ul class="simple">
+<li><p>executable installer</p></li>
+<li><p>package file install</p></li>
+<li><p>archive with instructions of how to extract and install and run.</p></li>
+<li><p>source archives with build instructions and scripts.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s possible to have an executable program or script that can be run directly without installation.</p>
+</div>
+<p>Executable installers, may not include dependencies (other files required to run); these could be provided by default by the operating system or may require installing separately.</p>
+</section>
+<section id="package-managers">
+<h3>Package Managers<a class="headerlink" href="#package-managers" title="Permalink to this heading">#</a></h3>
+<p>Package managers are used to manage applications, tools and libraries as packages.</p>
+<p>Packages are archives (often compressed files like zip) and can contain any combination of software, libraries and their metadata.</p>
+<p>Packages are collected and maintained together as distributions (eg conda-forge, pypi).</p>
+<p>Package managers keep track of packages and all of their versions/variants, both installed and available to be installed, along with their dependencies.</p>
+<p>They usually allow the following functionality:</p>
+<ul class="simple">
+<li><p>Searching (for both online repositories and installed)</p></li>
+<li><p>Downloading from package repositories</p></li>
+<li><p>Installation and removal of packages</p></li>
+<li><p>Upgrading/downgrading package versions</p></li>
+<li><p>Installation and removal of dependancies</p></li>
+</ul>
+<p>The most commonly used package managers on Aire is conda (distributed through miniforge) and pip.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arcdocs.leeds.ac.uk/aire/software/interpreters/miniforge.html">Conda</a> is an environment and package manager, primarily for Python and R.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Pip_(package_manager)">pip</a> is a package manager for Python.</p></li>
+</ul>
+</section>
+</section>
+<section id="build-tools">
+<h2>Build tools<a class="headerlink" href="#build-tools" title="Permalink to this heading">#</a></h2>
+<p>Build tools is a generic term for any programs and tools used to build software. Building software can include steps such as configuration, compiling, testing, packaging.</p>
+<p>Common buildtools:</p>
+<ul class="simple">
+<li><p>Autotools - is a set of build tools to help make portable Unix-like software.</p></li>
+<li><p>CMake - is a cross platform build automation tool, to support the creation of configurations for build tools.</p></li>
+<li><p>Make - the traditional Unix/Linux build tool.</p></li>
+</ul>
+<section id="compilers">
+<h3>Compilers<a class="headerlink" href="#compilers" title="Permalink to this heading">#</a></h3>
+<p>A compiler is a program which translates source code written in a programming language into target code. This is typically into machine code to create an executable program.</p>
+<p>Aire has the GNU compilers available by default, with the Intel OneAPI compilers being a popular alternative available on the module system.</p>
+<section id="interpreters">
+<h4>Interpreters<a class="headerlink" href="#interpreters" title="Permalink to this heading">#</a></h4>
+<p>An interpreter reads and executes source code directly. They generally run code slower than a compiled executable as it has to compile code every time the code is run, but there are optimisations such as bytecode compilation and caching that can vastly improve performance.</p>
+<p>Python is a popular interpreted language and the most common interpreter is the default, <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a>.</p>
+<p>Some languages are capable of being compiled or run through an interpreter.</p>
+</section>
+</section>
+<section id="build-configuration">
+<h3>Build Configuration<a class="headerlink" href="#build-configuration" title="Permalink to this heading">#</a></h3>
+<p>Tools like CMake can be used to create different platform specific for different build tools configurations.</p>
+<p>Configuration files usually contain locations of the source code, output locations, of existing components (libraries, assets such as help documentation, data).</p>
+<p>They can contain options for conditional builds such as for debug and release builds and for additional features to take advantage of optional components such as input/output format/interfaces or hardware - such as GPUs.</p>
+</section>
+<section id="packaging">
+<h3>Packaging<a class="headerlink" href="#packaging" title="Permalink to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users do not have sufficient permissions to install system packages on our HPC systems.
+Containers provide a mechanism for users to install system packages in a user managed environment.</p>
+</div>
+<p>Linux and package distributions usually provide tools to automate many steps of the process of creating software packages from source; this will include steps to compile source code, package the files required and test the package is installable/removable.</p>
+</section>
+<section id="distribution">
+<h3>Distribution<a class="headerlink" href="#distribution" title="Permalink to this heading">#</a></h3>
+<p>There is usually little need to distribute built academic code.</p>
+<p>If you want to distribute your source code, you can use online repositories such as <a class="reference external" href="https://github.com/">GitHub</a>. These can be linked into open research repositories like <a class="reference external" href="https://zenodo.org/">Zenodo</a>.</p>
+<p>Containers (and their definitions) are a popular way of distributing ready to run environments.</p>
+</section>
+</section>
+<section id="platforms">
+<h2>Platforms<a class="headerlink" href="#platforms" title="Permalink to this heading">#</a></h2>
+<p>The platforms mentioned below provide different levels of abstraction to run your software and code in.  These include:</p>
+<ul class="simple">
+<li><p>Machines (physical and virtual)</p></li>
+<li><p>Containers</p></li>
+<li><p>Virtual Environments</p></li>
+</ul>
+<p>They are extremely useful for helping make your projects reproducible, and also maintain compatibility and consistency for your projects.</p>
+<section id="physical-machines">
+<h3>Physical Machines<a class="headerlink" href="#physical-machines" title="Permalink to this heading">#</a></h3>
+<p>This refers to your physical devices such as laptops, PCs, phones, tablets.</p>
+<p>They utilise an <strong>Operating System</strong> (eg Windows, OSX, Android Linux) to control the hardware resources (CPU, storage, memory) to access data and run software and your code.</p>
+</section>
+<section id="virtual-machines">
+<h3>Virtual Machines<a class="headerlink" href="#virtual-machines" title="Permalink to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Aire cannot run virtual machines.</p>
+</div>
+<p>Virtual machines refer to applications (and system level hypervisors) that provide a software representation of hardware to run guest machines.</p>
+<p>It is possible to create and run multiple guest machines on a single host.</p>
+<p>The guest machines can use different virtual hardware to the host phyiscal machine and any operating system that supports the virtual hardware.</p>
+</section>
+<section id="containers">
+<h3>Containers<a class="headerlink" href="#containers" title="Permalink to this heading">#</a></h3>
+<p>Containers are an operating system level virtualisation that provides isolated instances.
+They utilise the host operating system’s kernel and provide access to (usually a limited set of) hardware resources (memory, CPU, storage, input devices).</p>
+<p>Containers have less overhead (often no noticeable performance loss) due to not needing to emulate any hardware, are more flexible and require less storage and configuration.</p>
+<p>Aire supports <a class="reference external" href="https://apptainer.org/">Apptainer</a>. Apptainer also supports the import and running of <a class="reference external" href="https://www.docker.com/">Docker</a> containers.</p>
+</section>
+<section id="virtual-environments">
+<h3>Virtual Environments<a class="headerlink" href="#virtual-environments" title="Permalink to this heading">#</a></h3>
+<p>Virtual Environments are environments for managing isolated sets of user software (tools and libraries).
+These are usually managed by a tool such as <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>.</p>
+<p>Each environment created can have its own set of software and when combined with package management can specify specific (or minimum or maximum) versions of some (or all) applications and libraries.</p>
+<p>Aire provides the miniforge module (that contains <code class="docutils literal notranslate"><span class="pre">conda</span></code> as the primary tool for managing environments, although others (such as virtualenv for Python) are available or installable.</p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>Common types of software files are executables, libraries, configuration, scripts and code.</p></li>
+<li><p>Path environment variables list common locations of executables and libraries so they can located in a standard method across different systems.</p></li>
+<li><p>Users should usually build and run code from user writable/executable directories (eg home directory).</p></li>
+<li><p>Software usually requires installation before it can be run.</p></li>
+<li><p>Package managers are used to manage and maintain software.</p></li>
+<li><p>Build tools can be used to compile, configure and package software.</p></li>
+<li><p>Machines (physical and virtual), Containers and Virtual Environments provide different levels of abstraction to run your code in.</p></li>
+</ul>
+</div>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Computer files - <a class="reference external" href="https://en.wikipedia.org/wiki/Computer_file">https://en.wikipedia.org/wiki/Computer_file</a>*</p></li>
+<li><p>Paths - <a class="reference external" href="https://unix.stackexchange.com/a/45106">https://unix.stackexchange.com/a/45106</a></p></li>
+<li><p>Home directory - <a class="reference external" href="https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/home.html">https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/home.html</a></p></li>
+<li><p>Software - <a class="reference external" href="https://en.wikipedia.org/wiki/Software">https://en.wikipedia.org/wiki/Software</a></p></li>
+<li><p>Package managers - <a class="reference external" href="https://en.wikipedia.org/wiki/Package_manager">https://en.wikipedia.org/wiki/Package_manager</a></p></li>
+<li><p>Building Software - <a class="reference external" href="https://en.wikipedia.org/wiki/Software_build">https://en.wikipedia.org/wiki/Software_build</a></p></li>
+<li><p>Compilers - <a class="reference external" href="https://en.wikipedia.org/wiki/Compiler">https://en.wikipedia.org/wiki/Compiler</a></p></li>
+<li><p>Virtual Machines - <a class="reference external" href="https://en.wikipedia.org/wiki/Virtual_machine">https://en.wikipedia.org/wiki/Virtual_machine</a></p></li>
+<li><p>Containers - <a class="reference external" href="https://en.wikipedia.org/wiki/OS-level_virtualization">https://en.wikipedia.org/wiki/OS-level_virtualization</a></p></li>
+<li><p>Singularity - <a class="reference external" href="https://arcdocs.leeds.ac.uk/aire/software/tools/apptainer.html">https://arcdocs.leeds.ac.uk/aire/software/tools/apptainer.html</a></p></li>
+<li><p>Conda - <a class="reference external" href="https://arcdocs.leeds.ac.uk/aire/software/interpreters/miniforge.html">https://arcdocs.leeds.ac.uk/aire/software/interpreters/miniforge.html</a></p></li>
+<li><p>Virtual Environments - <a class="reference external" href="https://carpentries-incubator.github.io/python-intermediate-development/12-virtual-environments/">https://carpentries-incubator.github.io/python-intermediate-development/12-virtual-environments/</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./course"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../welcome.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">HPC2: Installing and Managing Applications on the HPC</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="conda.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conda package manager</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#files">Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-files">Types of files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-environment-variables">Path environment variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locations-for-building-and-running-your-own-code">Locations for building and running your own code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software">Software</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-software">What is software?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-software">Installing software</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#package-managers">Package Managers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-tools">Build tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers">Compilers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreters">Interpreters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-configuration">Build Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packaging">Packaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution">Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platforms">Platforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-machines">Physical Machines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-machines">Virtual Machines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#containers">Containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual Environments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By University of Leeds Research Computing Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

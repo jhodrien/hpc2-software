@@ -1,0 +1,1024 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Autotools &#8212; HPC2: Installing and Managing Applications on the HPC</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'course/autotools';</script>
+    <link rel="canonical" href="https://arctraining.github.io/hpc2-software/course/autotools.html" />
+    <link rel="shortcut icon" href="../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CMake" href="cmake.html" />
+    <link rel="prev" title="Conda package manager" href="conda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="HPC2: Installing and Managing Applications on the HPC - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="HPC2: Installing and Managing Applications on the HPC - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    HPC2: Installing and Managing Applications on the HPC
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda package manager</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Autotools</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="cmake.html">CMake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="spack.html">Spack</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack/installing.html">Installing Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/testinstall.html">Building a test piece of software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/existing.html">Using existing software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/advanced.html">Advanced software install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/environments.html">Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/recipes.html">Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack/modules.html">Module files</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software/edit/main/book/course/autotools.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ARCTraining/hpc2-software/issues/new?title=Issue%20on%20page%20%2Fcourse/autotools.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/course/autotools.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Autotools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Autotools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-your-software">Download your software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-configure-script-if-missing">Generate a configure script if missing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-software">Configure the software</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install">Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="autotools">
+<h1>Autotools<a class="headerlink" href="#autotools" title="Permalink to this heading">#</a></h1>
+<p>Autotools is the name for the set of tools that make up the GNU Build System.
+When you download a piece of software, and you can see <code class="docutils literal notranslate"><span class="pre">configure</span></code>,
+<code class="docutils literal notranslate"><span class="pre">configure.in</span></code> or <code class="docutils literal notranslate"><span class="pre">configure.ac</span></code> you’re looking at something setup to use
+Autotools.  The workflow for building this sort of software tends to be quite
+consistent:</p>
+<ul class="simple">
+<li><p>Download a copy of the software</p></li>
+<li><p>Generate a configure script if missing</p></li>
+<li><p>Check out the configure script to see what options there are</p></li>
+<li><p>Run the configure script with your chosen options</p></li>
+<li><p>Build</p></li>
+<li><p>Install</p></li>
+</ul>
+<p>Let’s run through an example piece of software showing each of these steps.
+I’m picking on something from GitHub that includes all these steps.</p>
+<section id="download-your-software">
+<h2>Download your software<a class="headerlink" href="#download-your-software" title="Permalink to this heading">#</a></h2>
+<p>This could be downloading and extracting a tarball:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/OpenSMTPD/libasr/releases/download/1.0.4/libasr-1.0.4.tar.gz
+$ tar xf libasr-1.0.4.tar.gz
+$ cd libasr-1.0.4
+$ ls configure
+configure
+</pre></div>
+</div>
+<p>Here we can see that there’s already a configure script present.  But what if
+we do that same again but rather than use a released version, get the latest
+version from git?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/OpenSMTPD/libasr
+$ cd libasr
+$ ls configure
+ls: cannot access &#39;configure&#39;: No such file or directory
+</pre></div>
+</div>
+</section>
+<section id="generate-a-configure-script-if-missing">
+<h2>Generate a configure script if missing<a class="headerlink" href="#generate-a-configure-script-if-missing" title="Permalink to this heading">#</a></h2>
+<p>With this git example, we see there is no configure script present, so we need
+to generate it.  Sometimes you’re provided with a <a class="reference external" href="http://bootstrap.sh">bootstrap.sh</a>, <a class="reference external" href="http://autogen.sh">autogen.sh</a> or
+similar, as is the case here.  So we run it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./bootstrap
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">View full output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span> <span class="n">test</span> <span class="n">yes</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="o">+</span> <span class="n">libtoolize</span> <span class="o">--</span><span class="n">copy</span> <span class="o">--</span><span class="n">force</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">putting</span> <span class="n">auxiliary</span> <span class="n">files</span> <span class="ow">in</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;./ltmain.sh&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">putting</span> <span class="n">macros</span> <span class="ow">in</span> <span class="n">AC_CONFIG_MACRO_DIRS</span><span class="p">,</span> <span class="s1">&#39;m4&#39;</span><span class="o">.</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/libtool.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/ltoptions.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/ltsugar.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/ltversion.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/lt~obsolete.m4&#39;</span>
+<span class="o">+</span> <span class="n">test</span> <span class="o">-</span><span class="n">n</span> <span class="s1">&#39;&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;!&#39;</span> <span class="s1">&#39;&#39;</span> <span class="o">=</span> <span class="o">.</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">f</span> <span class="n">ltmain</span><span class="o">.</span><span class="n">sh</span>
+<span class="o">+</span> <span class="n">aclocal</span><span class="o">-</span><span class="mf">1.16</span> <span class="o">-</span><span class="n">I</span> <span class="n">m4</span>
+<span class="o">+</span> <span class="n">autoconf</span>
+<span class="o">+</span> <span class="n">test</span> <span class="n">yes</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="o">+</span> <span class="n">autoheader</span>
+<span class="o">+</span> <span class="n">test</span> <span class="n">yes</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="o">+</span> <span class="n">automake</span><span class="o">-</span><span class="mf">1.16</span> <span class="o">--</span><span class="n">foreign</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">missing</span> <span class="o">--</span><span class="n">copy</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./compile&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./config.guess&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./config.sub&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./install-sh&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./missing&#39;</span>
+<span class="n">openbsd</span><span class="o">-</span><span class="n">compat</span><span class="o">/</span><span class="n">Makefile</span><span class="o">.</span><span class="n">am</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./depcomp&#39;</span>
+<span class="o">+</span> <span class="n">rm</span> <span class="o">-</span><span class="n">Rf</span> <span class="n">autom4te</span><span class="o">.</span><span class="n">cache</span>
+</pre></div>
+</div>
+</div>
+<p>This sorts everything out ready for us to configure it.  If neither of these
+scripts are present, you can instead do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>autoreconf<span class="w"> </span>-fi
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">View full output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libtoolize</span><span class="p">:</span> <span class="n">putting</span> <span class="n">auxiliary</span> <span class="n">files</span> <span class="ow">in</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;./ltmain.sh&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">putting</span> <span class="n">macros</span> <span class="ow">in</span> <span class="n">AC_CONFIG_MACRO_DIRS</span><span class="p">,</span> <span class="s1">&#39;m4&#39;</span><span class="o">.</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/libtool.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/ltoptions.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/ltsugar.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/ltversion.m4&#39;</span>
+<span class="n">libtoolize</span><span class="p">:</span> <span class="n">copying</span> <span class="n">file</span> <span class="s1">&#39;m4/lt~obsolete.m4&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./compile&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./config.guess&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./config.sub&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./install-sh&#39;</span>
+<span class="n">configure</span><span class="o">.</span><span class="n">ac</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./missing&#39;</span>
+<span class="n">openbsd</span><span class="o">-</span><span class="n">compat</span><span class="o">/</span><span class="n">Makefile</span><span class="o">.</span><span class="n">am</span><span class="p">:</span> <span class="n">installing</span> <span class="s1">&#39;./depcomp&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This often results in exactly the same outcome, but the authors may have added
+other things into the bootstrap script, so if present it’s wise to use it.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="configure-the-software">
+<h1>Configure the software<a class="headerlink" href="#configure-the-software" title="Permalink to this heading">#</a></h1>
+<p>Running the configure script first lets you find out what options you have
+(trimmed down output show below):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./configure<span class="w"> </span>--help
+Installation<span class="w"> </span>directories:
+<span class="w">  </span>--prefix<span class="o">=</span>PREFIX<span class="w">         </span>install<span class="w"> </span>architecture-independent<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>PREFIX
+<span class="w">                          </span><span class="o">[</span>/usr/local<span class="o">]</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">View full output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure --help
+`configure&#39; configures libasr portable to adapt to many kinds of systems.
+
+Usage: ./configure [OPTION]... [VAR=VALUE]...
+
+To assign environment variables (e.g., CC, CFLAGS...), specify them as
+VAR=VALUE.  See below for descriptions of some of the useful variables.
+
+Defaults for the options are specified in brackets.
+
+Configuration:
+  -h, --help              display this help and exit
+      --help=short        display options specific to this package
+      --help=recursive    display the short help of all the included packages
+  -V, --version           display version information and exit
+  -q, --quiet, --silent   do not print `checking ...&#39; messages
+      --cache-file=FILE   cache test results in FILE [disabled]
+  -C, --config-cache      alias for `--cache-file=config.cache&#39;
+  -n, --no-create         do not create output files
+      --srcdir=DIR        find the sources in DIR [configure dir or `..&#39;]
+
+Installation directories:
+  --prefix=PREFIX         install architecture-independent files in PREFIX
+                          [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+                          [PREFIX]
+
+By default, `make install&#39; will install all the files in
+`/usr/local/bin&#39;, `/usr/local/lib&#39; etc.  You can specify
+an installation prefix other than `/usr/local&#39; using `--prefix&#39;,
+for instance `--prefix=$HOME&#39;.
+
+For better control, use the options below.
+
+Fine tuning of the installation directories:
+  --bindir=DIR            user executables [EPREFIX/bin]
+  --sbindir=DIR           system admin executables [EPREFIX/sbin]
+  --libexecdir=DIR        program executables [EPREFIX/libexec]
+  --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
+  --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
+  --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
+  --libdir=DIR            object code libraries [EPREFIX/lib]
+  --includedir=DIR        C header files [PREFIX/include]
+  --oldincludedir=DIR     C header files for non-gcc [/usr/include]
+  --datarootdir=DIR       read-only arch.-independent data root [PREFIX/share]
+  --datadir=DIR           read-only architecture-independent data [DATAROOTDIR]
+  --infodir=DIR           info documentation [DATAROOTDIR/info]
+  --localedir=DIR         locale-dependent data [DATAROOTDIR/locale]
+  --mandir=DIR            man documentation [DATAROOTDIR/man]
+  --docdir=DIR            documentation root [DATAROOTDIR/doc/libasr]
+  --htmldir=DIR           html documentation [DOCDIR]
+  --dvidir=DIR            dvi documentation [DOCDIR]
+  --pdfdir=DIR            pdf documentation [DOCDIR]
+  --psdir=DIR             ps documentation [DOCDIR]
+
+Program names:
+  --program-prefix=PREFIX            prepend PREFIX to installed program names
+  --program-suffix=SUFFIX            append SUFFIX to installed program names
+  --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
+
+System types:
+  --build=BUILD     configure for building on BUILD [guessed]
+  --host=HOST       cross-compile to build programs to run on HOST [BUILD]
+
+Optional Features:
+  --disable-option-checking  ignore unrecognized --enable/--with options
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --enable-silent-rules   less verbose build output (undo: &quot;make V=1&quot;)
+  --disable-silent-rules  verbose build output (undo: &quot;make V=0&quot;)
+  --enable-shared[=PKGS]  build shared libraries [default=yes]
+  --enable-static[=PKGS]  build static libraries [default=yes]
+  --enable-fast-install[=PKGS]
+                          optimize for fast installation [default=yes]
+  --enable-dependency-tracking
+                          do not reject slow dependency extractors
+  --disable-dependency-tracking
+                          speeds up one-time build
+  --disable-libtool-lock  avoid locking (might break parallel builds)
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-pic[=PKGS]       try to use only PIC/non-PIC objects [default=use
+                          both]
+  --with-aix-soname=aix|svr4|both
+                          shared library versioning (aka &quot;SONAME&quot;) variant to
+                          provide on AIX, [default=aix].
+  --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
+  --with-sysroot[=DIR]    Search for dependent libraries within DIR (or the
+                          compiler&#39;s sysroot if not specified).
+
+Some influential environment variables:
+  CC          C compiler command
+  CFLAGS      C compiler flags
+  LDFLAGS     linker flags, e.g. -L&lt;lib dir&gt; if you have libraries in a
+              nonstandard directory &lt;lib dir&gt;
+  LIBS        libraries to pass to the linker, e.g. -l&lt;library&gt;
+  CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I&lt;include dir&gt; if
+              you have headers in a nonstandard directory &lt;include dir&gt;
+  LT_SYS_LIBRARY_PATH
+              User-defined run-time library search path.
+  CPP         C preprocessor
+
+Use these variables to override the choices made by `configure&#39; or to help
+it to find libraries and programs with nonstandard names/locations.
+
+Report bugs to &lt;bugs@opensmtpd.org&gt;.
+</pre></div>
+</div>
+</div>
+<p>This may show you features you can turn on and off, or explain which variables
+are used by the build script.  In this example, we’re going to tell it
+where we’d like it installed to, and nothing else.  Typically I’d advise
+installing software for a given project in one location, rather than each
+program being installed separately, but it’s up to you.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span>/tmp/example/project1
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">View full output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure --prefix=/tmp/example/project1
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking whether make supports the include directive... yes (GNU style)
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... no
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether byte ordering is bigendian... no
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking how to run the C preprocessor... gcc -E
+checking sys/queue.h usability... yes
+checking sys/queue.h presence... yes
+checking for sys/queue.h... yes
+checking sys/tree.h usability... no
+checking sys/tree.h presence... no
+checking for sys/tree.h... no
+checking arpa/nameser_compat.h usability... yes
+checking arpa/nameser_compat.h presence... yes
+checking for arpa/nameser_compat.h... yes
+checking for unsigned long long int... yes
+checking for long long int... yes
+checking for long long... yes
+checking for unsigned long long... yes
+checking for long double... yes
+checking size of short int... 2
+checking size of int... 4
+checking size of long int... 8
+checking size of long long int... 8
+checking for int8_t... yes
+checking for int16_t... yes
+checking for int32_t... yes
+checking for int64_t... yes
+checking for uint8_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for intptr_t... yes
+checking for intmax_t... yes
+checking for uintptr_t... yes
+checking for uintmax_t... yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking for off_t... yes
+checking for mode_t... yes
+checking for pid_t... yes
+checking for uid_t in sys/types.h... yes
+checking for struct sockaddr.sa_len... no
+checking for struct sockaddr_storage.ss_len... no
+checking for struct sockaddr_in.sin_len... no
+checking for struct sockaddr_in6.sin6_len... no
+checking for clock_gettime... yes
+checking for explicit_bzero... yes
+checking for fgetln... no
+checking for freezero... no
+checking for getline... yes
+checking for reallocarray... yes
+checking for recallocarray... no
+checking for strlcat... no
+checking for strlcpy... no
+checking for strsep... yes
+checking for strtonum... no
+checking if explicit_bzero() will build... yes
+checking if clock_gettime() will build... yes
+checking if res_hnok() will build... yes
+checking if res_randomid() will build... yes
+checking if __p_type() will build... no
+checking if __p_type() will build with -lresolv... yes
+checking if __p_class() will build... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating openbsd-compat/Makefile
+config.status: creating src/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing include-config commands
+copying includes.h...
+copying compat-resolv.h...
+copying compat-socket.h...
+copying compat-stdio.h...
+copying compat-stdlib.h...
+copying compat-string.h...
+copying compat-time.h...
+</pre></div>
+</div>
+</div>
+<p>You’ll then got a lot of output showing it testing your system and ensuring it
+can find all the bits it needs.</p>
+<p>If it doesn’t find what it needs, you need to look at the options provided by
+<code class="docutils literal notranslate"><span class="pre">--help</span></code> or look into setting standard environment variables like
+CPATH/LIBRARY_PATH, as covered in the <a class="reference internal" href="theory.html"><span class="doc std std-doc">Theory section</span></a>.</p>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this heading">#</a></h2>
+<p>Assuming everything’s gone well so far with configure, it will have now written
+out a top level Makefile, which contains the necessary steps to build and
+install your software.  Building the software is now a case of:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make
+</pre></div>
+</div>
+<p>If you’re running on a multicore machine, you can ask it to run several build
+jobs in parallel.  For example, to build using 8 cores:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Poorly written makefiles will sometimes build incorrectly when built in
+parallel, but you’d normally be fine running <code class="docutils literal notranslate"><span class="pre">make</span></code> again afterwards which
+would complete the build.</p>
+</div>
+</section>
+<section id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this heading">#</a></h2>
+<p>Once built, to install it at the location you requested:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>There you have it.  Your software is installed at the location you asked.  It’s
+still up to you at this point to either run the software directly from this
+location, or update you environment variables to make this software generally
+available to you.  Details on this is covered in the <a class="reference internal" href="theory.html"><span class="doc std std-doc">Theory section</span></a>.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>Introduces Autotools for configuring build systems</p></li>
+<li><p>Showcased an example of deploying <code class="docutils literal notranslate"><span class="pre">libasr</span></code> using Autotools</p>
+<ul>
+<li><p>Showed how to find what options are available when configuring</p></li>
+<li><p>Highlighted using <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> for appropriate installation of software locally</p></li>
+<li><p>Showed steps to build and install using GNU Make after configuring with Autotools</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html">Autotools</a>
+<a class="reference external" href="https://www.gnu.org/software/make/">GNU Make</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./course"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="conda.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Conda package manager</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cmake.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CMake</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Autotools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-your-software">Download your software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-configure-script-if-missing">Generate a configure script if missing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-software">Configure the software</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install">Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By University of Leeds Research Computing Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
