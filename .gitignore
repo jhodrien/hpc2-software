@@ -2,6 +2,3 @@
 
 # built book
 **/_build/*
-
-# vagrant stuff
-**/.vagrant/*

@@ -18,44 +18,49 @@ The current lesson format to follow as a guide:
 * Exercises
 * Key points
 
-## Contributing to this project
+## Contributing to the documentation
+We welcome all contributions to this project via GitHub issues and pull requests. Please follow the guidelines on the [`CONTRIBUTING.md` file](CONTRIBUTING.md) to make sure your contributions can be easily integrated in the project. Edits must be approved by at least one user from the arcdocs group (generally RSEs & RIEs at Leeds). For larger issues that can't be solved quickly, or require greater input, please raise an Issue in the "Issues" tab. 
 
-### Working with this project locally
+There are two main ways to update the documentation; via GitHub codespaces (recommended) or locally on your own machine.
 
-You will need to install the [conda package management tool](https://docs.conda.io/en/latest/) before you can get this project working locally.
-You can use the `environment.yml` file included to create a conda environment that contains all the dependencies required to get started.
+### Option 1: Working with this project via GitHub Codespaces
+
+GitHub's codespace feature provides a cloud-based development environment that you can run from the repository's main page. To get started, switch to a new branch, then under the "Code" dropdown menu, select "Codespaces", then "Create codespace on \<branch-name>". The codespace will then launch in a new window, and will be ready to use after a few minutes of setup.
+
+Instructions for using the codespace are in the [codespace readme file](.devcontainer/CODESPACE_WELCOME.md); this will open automatically when you build the codespace.
+
+### Option 2: Working with this project locally
+
+> **_NOTE:_**  This documentation is based on jupyter-book, which does not support Windows. If you are working on a Windows machine, you are recommended to use Windows Subsystem for Linux 2 (WSL2).
+
+In a shell with git and conda available (we recommend Miniforge):
 
 ```{bash}
-$ git clone https://github.com/ARCTraining/template-jb-docs.git
 
+# clone repository and navigate to root
+$ git clone https://github.com/ARCTraining/hpc2-software.git
+$ cd hpc2-software
+
+# create environment
 $ conda env create -f environment.yml
 ```
 
 To build the html content locally you can use the `jupyter-book` command line tool:
 
 ```{bash}
-# navigate to the repository root
-$ cd template-jb-docs
-# sometimes worth running jupyter-book clean book/ to remove old files
+# activate the conda environment 
+$ conda activate hpc2-jb
+
+# build book
 $ jupyter-book build book/
-```
-### Windows
 
-Jupyterbook now supports [Windows](https://jupyterbook.org/en/stable/advanced/windows.html) so the above steps can also be used on a Windows terminal.
 
-#### Set up a development environment using Vagrant
-
-To aid with this we have created a `Vagrantfile` that can allow Windows users who have a virtualisation provider installed (such as [VirtualBox](https://www.virtualbox.org/)) and [Vagrant](https://www.vagrantup.com/) installed to create a headless virtual Linux machine that will build the jupyter book. You can do this with the following steps once you've installed a virtualisation provider and vagrant:
-```
-# within git-bash or powershell
-$ cd template-jb-docs
-$ vagrant up
-
-# to rebuild the site after changes with the vagrant box running
-$ vagrant reload --provision
-
-# don't forget to destroy the box when you're done
-$ vagrant destroy
+# if necessary, old files can be removed by running:
+$ jupyter-book clean book/
 ```
 
-This will build the jupyter-book html files on your Windows file system (by navigating via /vagrant) so your local build will still persist after you've destroyed your vagrant box.
+To preview the built html locally, you can open up a basic Python server:
+
+```bash
+python -m http.server -d book/_build/html
+```
